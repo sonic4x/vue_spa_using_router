@@ -11,18 +11,17 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: HelloWorld
-    },
-    {
-      path: '/menu',
-      name: 'Menu',
-      component: Menu
+      components: {
+        default: HelloWorld,
+        view1: Bar
+      }
     },
     {
       path: '/bar',
       name: 'Bar',
       component: Bar
     },
-    { path: '/aboutme' , component: AboutMe } 
+    { path: '/aboutme' , component: AboutMe }, //Fetching data before switching route
+    { path: '/menu/:id', name: 'menu', component: Menu }, // note the name is case-sensitive
   ]
 })

@@ -1,9 +1,12 @@
 <template>
-  <div>Today we have cookies</div>
+  <div>
+    We just ordered {{$route.params.id}}
+    <img :src="'http://lorempixel.com/200/200/food/' + $route.params.id">
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Menu',
+  name: 'menu',
 }
 </script>

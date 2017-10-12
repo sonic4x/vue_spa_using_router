@@ -2,7 +2,6 @@
   <div id="app">
     <ul>
       <li><router-link to="/" exact>Home</router-link></li>
-      <li><router-link to="/menu">Menu</router-link></li>
       <li>
         <router-link
           tag="li" to="/bar"
@@ -12,12 +11,20 @@
         </router-link>
       </li>
 
-      
+      <!--Fetching data before switching route-->
       <li><router-link to="/aboutme">About Me</router-link></li>
+
+      <!--Use named dynamic routes-->
+      <li v-for="i in 3">
+        <router-link :to="{ name:'menu', params:{ id: i } }">
+          Menu {{i}}
+        </router-link>
+      </li>
 
     </ul>
 
     <router-view/>
+    <router-view name = "view1"></router-view>
   </div>
 </template>
 
