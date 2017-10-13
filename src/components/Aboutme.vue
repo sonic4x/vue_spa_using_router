@@ -4,7 +4,7 @@
 
 <script>
 import axios from 'axios'
-export default {
+const Aboutme = {
   name: 'Aboutme',
   data () {
     return {
@@ -18,6 +18,7 @@ export default {
      // 不！能！获取组件实例 `this`
      // 因为当钩子执行前，组件实例还没被创建
       axios.post( 'https://schematic-ipsum.herokuapp.com/' , {
+      //axios.post( 'https://schemati/' , {  // present error case
         "type": "object",
         "properties": {
             "name": {
@@ -30,10 +31,15 @@ export default {
             }
         }
         }).then( response => {
+            //NProgress.done()  //since global guard did this, no need to invoke here
             next( vm => {
             vm.name = response.data.name
             vm.phone = response.data.phone
             })
+        }).catch(error=>{
+            //vm0.data.showError = true
+            from.matched[0].instances.default.$parent.showError = true
+            next(false)
         })
   },
   beforeRouteUpdate (to, from, next) {
@@ -50,4 +56,5 @@ export default {
   }
   
 }
+export default Aboutme
 </script>

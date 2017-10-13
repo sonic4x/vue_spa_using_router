@@ -21,17 +21,33 @@
         </router-link>
       </li>
 
+      <!--
+      <router-link to="/menu/4/">Menu 4</router-link>    // {{$route.params.id}} is 4
+      -->
     </ul>
 
-    <router-view/>
-    <router-view name = "view1"></router-view>
+    <!--Adding transitions between routes-->
+    <transition mode="out-in">
+      <router-view/>
+      <router-view name = "view1"></router-view>
+    </transition>
+    <div class="toast" v-show="showError">
+      There was an error
+    </div>
+    
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+const vapp= {
+  name: 'app',
+  data: function () {
+    return {
+      showError: false
+    }
+  }
+};
+export default vapp
 </script>
 
 <style>
@@ -58,4 +74,23 @@ Becomes:
 a.router-link-active, li.router-link-active>a {
   background-color: gainsboro;
 }
+
+.v-enter-active, .v-leave-active {
+  transition: opacity .5s;
+}
+.v-enter, .v-leave-active {
+  opacity: 0
+}
+
+div.toast {
+  width: 15em;
+  height: 1em;
+  position: fixed;
+  bottom: 1em;
+  background-color: red;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+
 </style>
